@@ -1,0 +1,99 @@
+I want to generate a reusable Flutter button component split cleanly into three parts, structured for flexibility, easy theming, and code reuse.
+ 
+🟣 1️⃣ app_button.dart
+Create an AppButton widget.
+ 
+The AppButton should accept:
+ 
+String label
+ 
+VoidCallback? onPressed
+ 
+ButtonType type → enum: primary, secondary, tertiary
+ 
+ButtonSize size → enum: small, medium, large
+ 
+ButtonState state → enum: default, hover, disabled
+ 
+The button should apply styles based on:
+ 
+button_properties.dart for size, padding, font
+ 
+button_config.json for colors, border radius, font family
+ 
+The button should render with:
+ 
+Text with correct font size, color
+ 
+Background color per type and state
+ 
+Padding and border radius
+ 
+The button should handle disabled state (greyed out + disabled tap).
+ 
+Hover state can be included but is optional (only if targeting web/desktop).
+ 
+🟣 2️⃣ button_properties.dart
+Define:
+ 
+enum ButtonType { primary, secondary, tertiary }
+ 
+enum ButtonSize { small, medium, large }
+ 
+enum ButtonState { default, hover, disabled }
+ 
+Provide static maps for:
+ 
+size → height, padding, font size
+ 
+default color mapping for type + state (fallback if config not used)
+ 
+Example size map:
+ 
+dart
+Copy
+Edit
+{
+  ButtonSize.small: { height: 32, fontSize: 12, padding: EdgeInsets.symmetric(horizontal: 12) },
+  ButtonSize.medium: { height: 48, fontSize: 14, padding: EdgeInsets.symmetric(horizontal: 16) },
+  ButtonSize.large: { height: 56, fontSize: 16, padding: EdgeInsets.symmetric(horizontal: 20) },
+}
+🟣 3️⃣ button_config.json
+JSON file in assets with keys:
+ 
+json
+Copy
+Edit
+{
+  "primaryColor": "#6200EE",
+  "secondaryColor": "#03DAC6",
+  "tertiaryColor": "#018786",
+  "disabledColor": "#9E9E9E",
+  "hoverOverlayColor": "#EEEEEE",
+  "borderRadius": 8,
+  "fontFamily": "Roboto"
+}
+Flutter code should load this JSON at startup (or on demand) and use its values to style buttons.
+ 
+If the JSON changes (e.g. primaryColor updated), all buttons automatically reflect the change.
+ 
+🟣 Additional Notes
+The AppButton must not hard-code any styles — it should get everything from button_properties.dart or button_config.json.
+ 
+The code should be clean, modular, and easy to reuse in different parts of the app.
+ 
+You can assume the JSON file is loaded into a singleton or provider.
+ 
+Generate code ready to copy into Flutter project.
+ 
+The focus is on structure, not boilerplate or app initialization.
+ 
+🟣 Output Expected
+app_button.dart (main widget)
+ 
+button_properties.dart (enums, size maps)
+ 
+button_config.json (example config file)
+ 
+✅ Goal
+Changing styles in the JSON or properties file will instantly reflect across all buttons without code changes in individual screens.
