@@ -1,0 +1,16 @@
+{
+  "primaryColor": "#0054A6",
+  "primaryHoverColor": "#006FCF",
+
+  "secondaryColor": "#EFEFEF",
+  "secondaryHoverColor": "#F5F5F5",
+
+  "tertiaryColor": "#0000FF",
+  "tertiaryHoverColor": "#6666FF",
+
+  "disabledColor": "#F5F5F5",
+
+  "borderRadius": 24,
+  "fontFamily": "Roboto"
+}
+
