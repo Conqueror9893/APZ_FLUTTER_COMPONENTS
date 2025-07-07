@@ -25,3 +25,7 @@ ApzInputField(
   label: 'Name',
   hintText: 'Enter your name',
 )
+```
+
+Prompt to start generating component files:
+Run all prompts in the prompts/ folder. For each prompt, generate the corresponding output files as specified in the prompt instructions and save them in the appropriate directories. Begin now.

@@ -1,0 +1,110 @@
+Build a reusable Flutter component library named `AppzInputField` that supports multiple input field types (`default`, `email`, `mobile`, `aadhaar`, `mpin`, `upload_file`, etc.).  
+
+✅ Follow the folder structure below:  
+
+```
+lib/
+└── components/
+    └── appz_input_field/
+        ├── appz_input_field.dart                   // main exported widget
+        ├── appz_input_field_enums.dart             // enums like AppzFieldType, AppzFieldState, AppzInputValidationType
+        ├── appz_input_field_theme.dart             // AppzStateStyle data class
+        ├── appz_style_config.dart                  // Singleton to load JSON style config (ui_config.json)
+        ├── fields/
+        │   ├── mobile_input_widget.dart            // Mobile number input
+        │   ├── aadhaar_input_widget.dart           // Aadhaar 12-digit grouped input
+        │   ├── mpin_input_widget.dart              // PIN input with 4/6 digit boxes
+        │   └── upload_file_input_widget.dart       // File picker input
+        └── utils/
+            └── validators.dart                     // Default field validators
+```
+
+✅ Load style configuration from `/assets/ui_config.json` using a singleton called `AppzStyleConfig`.  
+Each style is mapped to a combination of `AppzFieldState` and optionally `AppzFieldType`.  
+The theme object `AppzStateStyle` should contain:
+
+```dart
+class AppzStateStyle {
+  final Color borderColor;
+  final Color backgroundColor;
+  final Color textColor;
+  final double borderRadius;
+  final double borderWidth;
+  final double fontSize;
+  final String fontFamily;
+  final double labelFontSize;
+  final double paddingHorizontal;
+  final double paddingVertical;
+  ...
+}
+```
+
+✅ Each input field type should use its own widget in `fields/`.  
+Based on `AppzFieldType`, the main widget `AppzInputField` should delegate rendering to the appropriate custom widget (e.g. MPIN → `MpinInputWidget`, Mobile → `MobileInputWidget`).
+
+✅ Implement the following design mechanisms:
+
+1. **MobileInputWidget**  
+    - Shows country code selector (editable or not), and number field.  
+    - Country code and number are visually separate but update the combined controller.  
+    - Error should show below, not inside the input.  
+    - Validation: 10-digit number, mandatory only on submission.
+
+2. **AadhaarInputWidget**  
+    - 3 input boxes of 4 digits each.  
+    - Combined into main controller.  
+    - Focus moves as user types.  
+    - Validation: Error only on blur or form submission.  
+    - Error shown below the grouped fields.
+
+3. **MpinInputWidget**  
+    - Shows N digit boxes (4 or 6 configurable via `mpinLength`).  
+    - Fixed box width and spacing regardless of screen width.  
+    - Text hidden via `obscureText`.  
+    - Focus shift on typing or backspace.  
+    - Combined value goes to main controller.
+
+4. **UploadFileInputWidget**  
+    - Uses `file_picker` to select file.  
+    - Displays selected file name.  
+    - Validates file extension (`allowedExtensions`) and file size (`maxSizeInKB`).  
+    - Shows upload label, clickable hint, and optional validation error.
+
+✅ Shared Features:
+
+- All widgets support:
+  - `AppzStateStyle currentStyle`
+  - `TextEditingController mainController`
+  - `FocusNode? mainFocusNode`
+  - `FormFieldValidator<T>? validator`
+  - `AppzInputValidationType` (e.g., mandatory, optional)
+  - Consistent padding, borderRadius, borderColor, textColor based on state and focus
+  - `triggerSubmitValidation()` for submit-triggered validation.
+
+✅ Behavior and Validation Rules:
+
+- Errors must show only:
+  - On blur (`FocusNode` lost focus)
+  - On form submission (`triggerSubmitValidation`)
+- Do NOT show validation errors while typing.
+- For grouped fields (Aadhaar, MPIN), validate only when group loses focus or submit.
+- Always use the same validation + error rendering pattern across all field types.
+
+✅ UI and Design Consistency:
+
+- Match all visuals to the reference image provided (field heights, spacing, colors, etc.)
+- Do not allow layout to break with parent width.  
+- Maintain uniform corner radius and spacing from JSON config.  
+- Use `SizedBox`, `Fixed width`, `EdgeInsets.symmetric` to keep uniform layout.
+
+✅ Optional:
+
+- Support for `isEnabled` in all components to visually gray out/disable interactions.  
+- Add icons or labels as per config if required later.
+
+✅ Final Output:
+
+- Full Flutter code for all widgets  
+- Well-separated components  
+- JSON-driven theming via `AppzStyleConfig`  
+- Consistent styling, validation, interaction
