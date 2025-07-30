@@ -74,7 +74,7 @@ class _AppzFooterMenuState extends State<AppzFooterMenu> {
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
         itemCount: widget.menuItems.length,
         activeIndex: widget.selectedIndex,
-        gapLocation: GapLocation.end,
+        gapLocation: GapLocation.center,
         notchSmoothness: NotchSmoothness.verySmoothEdge,
         leftCornerRadius: _styleConfig.leftCornerRadius,
         rightCornerRadius: _styleConfig.rightCornerRadius,

@@ -341,7 +341,7 @@
       "centerButtonBackground": "#0054A6"
     },
     "icons": {
-      "home": "assets/icons/home.svg",
+      "home": "assets/icons/Home.svg",
       "calendar": "assets/icons/calendar.svg",
       "announcement": "assets/icons/announcement-01.svg",
       "more": "assets/icons/dots-more.svg",
