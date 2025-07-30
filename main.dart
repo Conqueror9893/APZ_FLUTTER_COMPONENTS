@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:apz_flutter_components/components/appz_dropdown_field/dropdown_style_config.dart';
 import 'package:apz_flutter_components/components/appz_input_field/appz_input_style_config.dart';
 import 'package:apz_flutter_components/components/appz_category/appz_category_style_config.dart';
-import 'example/appz_image_example.dart';
-import 'example/appz_category_list_example.dart';
-import 'example/apz_components_demo_page.dart';
-import 'example/appz_category_example.dart';
+import 'example/appz_footer_menu_example.dart';
 import 'package:apz_flutter_components/components/appz_checkbox/checkbox_style_config.dart';
 import 'package:apz_flutter_components/components/appz_radio/radio_style_config.dart';
 import 'package:apz_flutter_components/components/appz_toggle/toggle_style_config.dart';
 import 'package:apz_flutter_components/components/appz_toggle_with_label/toggle_with_label_style_config.dart';
+import 'package:apz_flutter_components/components/appz_footer_menu/footer_menu_style_config.dart';
 
 Future<void> main() async {
   // Ensure that widget binding is initialized before calling native code.
@@ -26,6 +24,7 @@ Future<void> main() async {
   await RadioStyleConfig.instance.load();
   await ToggleStyleConfig.instance.load();
   await ToggleWithLabelStyleConfig.instance.load();
+  await FooterMenuStyleConfig.instance.load();
 
   runApp(const MyApp());
 }
@@ -40,7 +39,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const AppzImageExamplePage(),
+      home: const AppzFooterMenuExample(),
       debugShowCheckedModeBanner: false, // Optional: to hide the debug banner
     );
   }
