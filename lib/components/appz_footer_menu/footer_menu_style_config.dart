@@ -227,37 +227,81 @@ class FooterMenuStyleConfig {
       _tokenParser.getValue<double>(['footerMenu', 'bottomNav', 'borderRadius'],
           fromSupportingTokens: true) ??
       24.0;
-  List<BoxShadow> get bottomNavShadow {
-    final shadowMap = _tokenParser.getValue<Map<String, dynamic>>(
-        ['footerMenu', 'bottomNav', 'shadow'],
-        fromSupportingTokens: true);
-    if (shadowMap != null) {
-      return [
-        BoxShadow(
-          color: _parseColor(shadowMap['color'] as String? ?? '#4D000000'),
-          blurRadius: (shadowMap['blurRadius'] as num).toDouble(),
-          offset: Offset(
-            (shadowMap['offsetX'] as num).toDouble(),
-            (shadowMap['offsetY'] as num).toDouble(),
-          ),
-          spreadRadius: (shadowMap['spreadRadius'] as num).toDouble(),
-        ),
-      ];
+  BoxShadow get bottomNavShadow {
+    final shadowColor = _tokenParser.getValue<String>(
+      ['footerMenu', 'bottomNav', 'boxShadow', 'color'],
+      fromSupportingTokens: true,
+    );
+    if (shadowColor != null) {
+      return BoxShadow(
+        color: _parseColor(shadowColor),
+        blurRadius: 20,
+      );
     }
-    return [
-      const BoxShadow(
-        color: Color(0x4D000000),
-        blurRadius: 20.0,
-        offset: Offset(0, 0),
-        spreadRadius: 0,
-      ),
-    ];
+    return BoxShadow(
+      color: Colors.black.withOpacity(0.3),
+      blurRadius: 20,
+    );
   }
 
   double get bottomNavNotchMargin =>
-      _tokenParser.getValue<double>(['footerMenu', 'bottomNav', 'notchMargin'],
-          fromSupportingTokens: true) ??
-      20.0;
+      _tokenParser.getValue<double>(
+        ['footerMenu', 'bottomNav', 'notchMargin'],
+        fromSupportingTokens: true,
+      ) ??
+      60.0;
+
+  double get bottomNavContainerPaddingHorizontal =>
+      _tokenParser.getValue<double>(
+        [
+          'footerMenu',
+          'bottomNav',
+          'container',
+          'padding',
+          'horizontal',
+        ],
+        fromSupportingTokens: true,
+      ) ??
+      16.0;
+
+  double get bottomNavContainerPaddingVertical =>
+      _tokenParser.getValue<double>(
+        [
+          'footerMenu',
+          'bottomNav',
+          'container',
+          'padding',
+          'vertical',
+        ],
+        fromSupportingTokens: true,
+      ) ??
+      24.0;
+
+  double get bottomNavMenuItemPaddingHorizontal =>
+      _tokenParser.getValue<double>(
+        [
+          'footerMenu',
+          'bottomNav',
+          'menuItem',
+          'padding',
+          'horizontal',
+        ],
+        fromSupportingTokens: true,
+      ) ??
+      16.0;
+
+  double get bottomNavMenuItemPaddingVertical =>
+      _tokenParser.getValue<double>(
+        [
+          'footerMenu',
+          'bottomNav',
+          'menuItem',
+          'padding',
+          'vertical',
+        ],
+        fromSupportingTokens: true,
+      ) ??
+      8.0;
 
   Color _parseColor(String? hexColor) {
     if (hexColor == null) return Colors.transparent;
