@@ -303,6 +303,20 @@ class FooterMenuStyleConfig {
       ) ??
       8.0;
 
+  double get leftCornerRadius =>
+      _tokenParser.getValue<double>(
+        ['footerMenu', 'bottomNav', 'leftCornerRadius'],
+        fromSupportingTokens: true,
+      ) ??
+      32.0;
+
+  double get rightCornerRadius =>
+      _tokenParser.getValue<double>(
+        ['footerMenu', 'bottomNav', 'rightCornerRadius'],
+        fromSupportingTokens: true,
+      ) ??
+      32.0;
+
   Color _parseColor(String? hexColor) {
     if (hexColor == null) return Colors.transparent;
 

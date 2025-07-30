@@ -395,7 +395,9 @@
           "horizontal": 16.0,
           "vertical": 8.0
         }
-      }
+      },
+      "leftCornerRadius": 32.0,
+      "rightCornerRadius": 32.0
     }
   }
 }
