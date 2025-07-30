@@ -380,7 +380,22 @@
         "spreadRadius": 0.0
       },
       "gapLocation": "center",
-      "notchMargin": 60.0
+      "notchMargin": 60.0,
+      "boxShadow": {
+        "color": "Token.shadow"
+      },
+      "container": {
+        "padding": {
+          "horizontal": 16.0,
+          "vertical": 24.0
+        }
+      },
+      "menuItem": {
+        "padding": {
+          "horizontal": 16.0,
+          "vertical": 8.0
+        }
+      }
     }
   }
 }

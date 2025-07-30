@@ -78,19 +78,22 @@ class _AppzFooterMenuState extends State<AppzFooterMenu> {
         notchSmoothness: NotchSmoothness.verySmoothEdge,
         notchMargin: _styleConfig.bottomNavNotchMargin,
         height: _styleConfig.bottomNavHeight,
-        shadow: BoxShadow(
-          color: Colors.black.withOpacity(0.3),
-          blurRadius: 20,
-        ),
+        shadow: _styleConfig.bottomNavShadow,
         tabBuilder: (index, isActive) {
           final item = widget.menuItems[index];
           return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            margin: EdgeInsets.symmetric(
+              horizontal: _styleConfig.bottomNavContainerPaddingHorizontal,
+              vertical: _styleConfig.bottomNavContainerPaddingVertical,
+            ),
+            padding: EdgeInsets.symmetric(
+              horizontal: _styleConfig.bottomNavMenuItemPaddingHorizontal,
+              vertical: _styleConfig.bottomNavMenuItemPaddingVertical,
+            ),
             decoration: BoxDecoration(
               color: isActive
                   ? _styleConfig.bottomNavActiveColor
-                  : Colors.transparent,
+                  : _styleConfig.bottomNavInactiveColor,
               borderRadius:
                   BorderRadius.circular(_styleConfig.bottomNavBorderRadius),
             ),
